@@ -1,7 +1,7 @@
-import sections from "./directory.data.js";
+import SECTIONS_DATA from "./directory.data.json";
 
 const INITIAL_STATE = {
-  sections
+  sections: SECTIONS_DATA
 };
 
 const directoryReducer = (state = INITIAL_STATE, action) => {
