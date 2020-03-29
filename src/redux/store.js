@@ -1,6 +1,8 @@
 import { createStore, applyMiddleware } from "redux";
 import { persistStore } from "redux-persist";
 import logger from "redux-logger";
+// redux-thunk only looks for actions that return a function. 
+// If there is a function then redux-thunk will give it dispatch to use
 import thunk from "redux-thunk";
 
 import rootReducer from "./root-reducer";
