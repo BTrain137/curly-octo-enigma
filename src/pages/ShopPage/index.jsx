@@ -9,6 +9,8 @@ import { selectIsCollectionsLoaded } from "../../redux/shop/shop.selector";
 import CollectionOverviewContainer from "../../components/CollectionOverview/CollectionOverview.container";
 import CollectionPage from "../CollectionPage";
 
+// import CollectionContainer from "../CollectionPage/collection.container";
+
 import { fetchCollectionsStartAsync } from "../../redux/shop/shop.action";
 
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
@@ -39,7 +41,8 @@ class ShopPage extends Component {
               isLoading={!isCollectionsLoaded}
               {...props}
             />
-          )}
+            )}
+          // component={CollectionContainer}
         />
       </div>
     );
