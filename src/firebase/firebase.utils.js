@@ -10,7 +10,7 @@ const config = {
   storageBucket: "",
   messagingSenderId: "752656728986",
   appId: "1:752656728986:web:6de676afb42a1bbe2df023",
-  measurementId: "G-2RF70CD3GF"
+  measurementId: "G-2RF70CD3GF",
 };
 
 firebase.initializeApp(config);
@@ -30,7 +30,7 @@ export const createUserProfileDocument = async (userAuth, additionalData) => {
         displayName,
         email,
         createAt,
-        ...additionalData
+        ...additionalData,
       });
     } catch (error) {
       console.log("Error creating user", error.message);
@@ -48,7 +48,7 @@ export const addCollectionAndDocuments = async (
 
   const batch = firestore.batch();
 
-  objectsToAdd.forEach(obj => {
+  objectsToAdd.forEach((obj) => {
     const newDocRef = collectionRef.doc();
     batch.set(newDocRef, obj);
   });
@@ -56,14 +56,14 @@ export const addCollectionAndDocuments = async (
   return await batch.commit();
 };
 
-export const convertCollectionsSnapshotToMap = collection => {
-  const transformedCollection = collection.docs.map(doc => {
+export const convertCollectionsSnapshotToMap = (collection) => {
+  const transformedCollection = collection.docs.map((doc) => {
     const { title, items } = doc.data();
     return {
       routeName: encodeURI(title.toLowerCase()),
       id: doc.id,
       title,
-      items
+      items,
     };
   });
 
@@ -71,6 +71,15 @@ export const convertCollectionsSnapshotToMap = collection => {
     acc[collection.title.toLowerCase()] = collection;
     return acc;
   }, {});
+};
+
+export const getCurrentUser = () => {
+  return new Promise((resolve, reject) => {
+    const unsubscribe = auth.onAuthStateChanged((userAuth) => {
+      unsubscribe();
+      resolve(userAuth);
+    }, reject);
+  });
 };
 
 export const auth = firebase.auth();
