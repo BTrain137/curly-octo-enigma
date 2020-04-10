@@ -22,7 +22,3 @@ export const clearItem = (item) => ({
 export const clearCart = () => ({
   type: CartActionTypes.CLEAR_CART,
 });
-
-export const emptyCart = () => ({
-  type: CartActionTypes.EMPTY_CART,
-});
