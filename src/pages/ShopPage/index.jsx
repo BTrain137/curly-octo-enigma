@@ -11,14 +11,14 @@ import CollectionPage from "../CollectionPage";
 
 // import CollectionContainer from "../CollectionPage/collection.container";
 
-import { fetchCollectionsStartAsync } from "../../redux/shop/shop.action";
+import { fetchCollectionStart } from "../../redux/shop/shop.action";
 
 const CollectionPageWithSpinner = WithSpinner(CollectionPage);
 
 class ShopPage extends Component {
   componentDidMount() {
-    const { fetchCollectionsStartAsync } = this.props;
-    fetchCollectionsStartAsync();
+    const { fetchCollectionStart } = this.props;
+    fetchCollectionStart();
   }
 
   render() {
@@ -36,12 +36,12 @@ class ShopPage extends Component {
         <Route
           path={`${match.path}/:collectionId`}
           // This route left the isLoading still attached to compare the difference
-          render={props => (
+          render={(props) => (
             <CollectionPageWithSpinner
               isLoading={!isCollectionsLoaded}
               {...props}
             />
-            )}
+          )}
           // component={CollectionContainer}
         />
       </div>
@@ -50,11 +50,11 @@ class ShopPage extends Component {
 }
 
 const mapStateToProps = createStructuredSelector({
-  isCollectionsLoaded: selectIsCollectionsLoaded
+  isCollectionsLoaded: selectIsCollectionsLoaded,
 });
 
-const mapDispatchToProps = dispatch => ({
-  fetchCollectionsStartAsync: () => dispatch(fetchCollectionsStartAsync())
+const mapDispatchToProps = (dispatch) => ({
+  fetchCollectionStart: () => dispatch(fetchCollectionStart()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ShopPage);
