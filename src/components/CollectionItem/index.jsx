@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import { connect } from "react-redux";
 
-import { addItem } from "../../redux/cart/cart.actions";
 import CustomButton from "../CustomButton";
 
 import { CartContext } from "../../provider/cart/cart.provider";
@@ -24,8 +22,4 @@ const CollectionItem = ({ item }) => {
   </div>
 )};
 
-const mapDispatchToProps = dispatch => ({
-  addItem: item => dispatch(addItem(item))
-});
-
-export default connect(null, mapDispatchToProps)(CollectionItem);
+export default CollectionItem;
