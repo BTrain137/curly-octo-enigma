@@ -36,3 +36,9 @@ export const clearItemFromCart = (cartItems, cartItemToClear) => {
 
 export const getItemsCount = (cartItems) =>
   cartItems.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
+
+export const getCartTotal = (cartItems) =>
+  cartItems.reduce(
+    (acc, cartItem) => acc + cartItem.price * cartItem.quantity,
+    0
+  );
