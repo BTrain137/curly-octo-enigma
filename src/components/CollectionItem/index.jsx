@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { connect } from "react-redux";
 
 import { addItem } from "../../redux/cart/cart.actions";
 import CustomButton from "../CustomButton";
 
+import { CartContext } from "../../provider/cart/cart.provider";
+
 import "./CollectionItem.styles.scss";
 
-const CollectionItem = ({ item, addItem }) => {
+const CollectionItem = ({ item }) => {
   const { name, price, imageUrl } = item;
+  const { addItem } = useContext(CartContext);
   return (
   <div className="collection-item">
     <div className="image" style={{ backgroundImage: `url(${imageUrl})` }} />
