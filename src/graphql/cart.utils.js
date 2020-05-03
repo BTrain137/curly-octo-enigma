@@ -33,3 +33,7 @@ export const removeItemFromCart = (cartItems, cartItemToRemove) => {
 export const clearItemFromCart = (cartItems, cartItemToClear) => {
   return cartItems.filter(cartItem => cartItem.id !== cartItemToClear.id);
 };
+
+export const getItemCount = (cartItems) => {
+  return cartItems.reduce((acc, cartItem) => acc + cartItem.quantity, 0);
+}
