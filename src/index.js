@@ -8,6 +8,8 @@ import { createHttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { ApolloClient, gql } from "apollo-boost";
 
+import { typeDefs, resolvers } from "./graphql/resolvers";
+
 import { store, persistor } from "./redux/store";
 
 import App from "./App";
@@ -22,18 +24,28 @@ const cache = new InMemoryCache();
 const client = new ApolloClient({
   link: httpLink,
   cache,
+  typeDefs,
+  resolvers,
 });
 
-client.query({
-  query: gql`
-    {
-      getCollectionsByTitle(title: "hats") {
-        id
-        title
+client.writeData({
+  data: {
+    cartHidden: true,
+  },
+});
+
+client
+  .query({
+    query: gql`
+      {
+        getCollectionsByTitle(title: "hats") {
+          id
+          title
+        }
       }
-    }
-  `,
-}).then(result => console.log(result));
+    `,
+  })
+  .then((result) => console.log(result));
 
 ReactDOM.render(
   <ApolloProvider client={client}>
