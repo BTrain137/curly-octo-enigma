@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import { createStructuredSelector } from "reselect";
 
 import { auth } from "../../firebase/firebase.utils";
-import {default as CartIcon} from "../CartIcon/CartIcon.container";
-import CartDropdown from "../CartDropdown";
+import { default as CartIcon } from "../CartIcon/CartIcon.container";
+import { default as CartDropdown } from "../CartDropdown/CartDropdown.container";
 
 import { selectCurrentUser } from "../../redux/user/user.select";
 
